@@ -1,0 +1,70 @@
+#include &lt;iostream&gt;
+using namespace std;
+
+class Member {
+private:
+int memberID;
+string name, planType;
+int fee;
+
+public:
+static int totalMembers;
+
+void input() {
+cout &lt;&lt; &quot;Enter Member ID: &quot;;
+cin &gt;&gt; memberID;
+
+cout &lt;&lt; &quot;Enter Name: &quot;;
+cin &gt;&gt; name;
+
+cout &lt;&lt; &quot;Enter Plan Type (Basic/Premium/VIP): &quot;;
+cin &gt;&gt; planType;
+
+if (planType == &quot;Basic&quot;)
+fee = 1000;
+else if (planType == &quot;Premium&quot;)
+fee = 2000;
+else if (planType == &quot;VIP&quot;)
+fee = 3000;
+else {
+
+cout &lt;&lt; &quot;Invalid plan type!\n&quot;;
+fee = 0;
+}
+
+if (fee &gt; 0)
+totalMembers++;
+}
+
+void display() {
+cout &lt;&lt; &quot;\nMember ID: &quot; &lt;&lt; memberID;
+cout &lt;&lt; &quot;\nName: &quot; &lt;&lt; name;
+cout &lt;&lt; &quot;\nPlan Type: &quot; &lt;&lt; planType;
+cout &lt;&lt; &quot;\nFee: Rs.&quot; &lt;&lt; fee &lt;&lt; endl;
+}
+};
+
+int Member::totalMembers = 0;
+
+int main() {
+int n;
+cout &lt;&lt; &quot;Enter number of members: &quot;;
+cin &gt;&gt; n;
+
+Member m[50];
+
+for (int i = 0; i &lt; n; i++) {
+cout &lt;&lt; &quot;\nEnter details for member &quot; &lt;&lt; i + 1 &lt;&lt; endl;
+m[i].input();
+}
+
+cout &lt;&lt; &quot;\n--- Membership Details ---\n&quot;;
+
+for (int i = 0; i &lt; n; i++) {
+m[i].display();
+}
+
+cout &lt;&lt; &quot;\nTotal Active Members: &quot; &lt;&lt; Member::totalMembers;
+
+return 0;
+}
