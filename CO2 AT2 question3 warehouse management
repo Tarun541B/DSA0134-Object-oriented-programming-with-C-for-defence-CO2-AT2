@@ -1,90 +1,91 @@
-#include &lt;iostream&gt;
+#include <iostream>
 using namespace std;
 
 class Warehouse {
 private:
-int itemID, quantity;
-string name, location;
+    int itemID, quantity;
+    string name, location;
 
 public:
-static int totalItems;
+    static int totalItems;
 
-void input() {
-cout &lt;&lt; &quot;Enter Item ID: &quot;;
-cin &gt;&gt; itemID;
+    void input() {
+        cout << "Enter Item ID: ";
+        cin >> itemID;
 
-cout &lt;&lt; &quot;Enter Item Name: &quot;;
-cin &gt;&gt; name;
+        cout << "Enter Item Name: ";
+        cin >> name;
 
-cout &lt;&lt; &quot;Enter Quantity: &quot;;
-cin &gt;&gt; quantity;
+        cout << "Enter Quantity: ";
+        cin >> quantity;
 
-cout &lt;&lt; &quot;Enter Location: &quot;;
-cin &gt;&gt; location;
+        cout << "Enter Location: ";
+        cin >> location;
 
-if (quantity &lt; 0) {
-cout &lt;&lt; &quot;Invalid quantity!\n&quot;;
-quantity = 0;
-}
+        if (quantity < 0) {
+            cout << "Invalid quantity!\n";
+            quantity = 0;
+        }
 
-totalItems += quantity;
-}
+        totalItems += quantity;
+    }
 
-void removeStock() {
-int qty;
-cout &lt;&lt; &quot;Enter quantity to remove: &quot;;
-cin &gt;&gt; qty;
+    void removeStock() {
+        int qty;
+        cout << "Enter quantity to remove: ";
+        cin >> qty;
 
-if (qty &lt;= quantity &amp;&amp; qty &gt; 0) {
-quantity -= qty;
-totalItems -= qty;
-} else {
-cout &lt;&lt; &quot;Invalid stock removal!\n&quot;;
-}
-}
+        if (qty <= quantity && qty > 0) {
+            quantity -= qty;
+            totalItems -= qty;
+        } else {
+            cout << "Invalid stock removal!\n";
+        }
+    }
 
-void updateStock() {
-int qty;
-cout &lt;&lt; &quot;Enter new quantity: &quot;;
-cin &gt;&gt; qty;
+    void updateStock() {
+        int qty;
+        cout << "Enter new quantity: ";
+        cin >> qty;
 
-if (qty &gt;= 0) {
-totalItems = totalItems - quantity + qty;
-quantity = qty;
-} else {
-cout &lt;&lt; &quot;Invalid quantity!\n&quot;;
-}
-}
+        if (qty >= 0) {
+            totalItems = totalItems - quantity + qty;
+            quantity = qty;
+        } else {
+            cout << "Invalid quantity!\n";
+        }
+    }
 
-void display() {
-cout &lt;&lt; &quot;\nItem ID: &quot; &lt;&lt; itemID;
-
-cout &lt;&lt; &quot;\nItem Name: &quot; &lt;&lt; name;
-cout &lt;&lt; &quot;\nQuantity: &quot; &lt;&lt; quantity;
-cout &lt;&lt; &quot;\nLocation: &quot; &lt;&lt; location &lt;&lt; endl;
-}
+    void display() {
+        cout << "\nItem ID: " << itemID;
+        cout << "\nItem Name: " << name;
+        cout << "\nQuantity: " << quantity;
+        cout << "\nLocation: " << location << endl;
+    }
 };
 
 int Warehouse::totalItems = 0;
 
 int main() {
-int n;
-cout &lt;&lt; &quot;Enter number of items: &quot;;
-cin &gt;&gt; n;
+    int n;
+    cout << "Enter number of items: ";
+    cin >> n;
 
-Warehouse w[50];
+    Warehouse w[50];
 
-for (int i = 0; i &lt; n; i++) {
-cout &lt;&lt; &quot;\nEnter item &quot; &lt;&lt; i + 1 &lt;&lt; &quot; details\n&quot;;
-w[i].input();
+    for (int i = 0; i < n; i++) {
+        cout << "\nEnter item " << i + 1 << " details\n";
+        w[i].input();
+    }
+
+    cout << "\n--- Warehouse Details ---\n";
+    for (int i = 0; i < n; i++) {
+        w[i].display();
+    }
+
+    cout << "\nTotal Items Stored: " << Warehouse::totalItems;
+
+    return 0;
 }
 
-cout &lt;&lt; &quot;\n--- Warehouse Details ---\n&quot;;
-for (int i = 0; i &lt; n; i++) {
-w[i].display();
-}
 
-cout &lt;&lt; &quot;\nTotal Items Stored: &quot; &lt;&lt; Warehouse::totalItems;
-
-return 0;
-}
