@@ -3,54 +3,54 @@ using namespace std;
 
 class Event {
 private:
-string eventName, participantName;
-int registrationID;
+    string eventName, participantName;
+    int registrationID;
 
 public:
-static int totalParticipants;
+    static int totalParticipants;
 
-void input(Event e[], int count) {
-cout &lt;&lt; &quot;Enter Event Name: &quot;;
-cin &gt;&gt; eventName;
+    void input(Event e[], int count) {
+        cout << "Enter Event Name: ";
+        cin >> eventName;
 
-cout &lt;&lt; &quot;Enter Participant Name: &quot;;
-cin &gt;&gt; participantName;
+        cout << "Enter Participant Name: ";
+        cin >> participantName;
 
-cout &lt;&lt; &quot;Enter Registration ID: &quot;;
-cin &gt;&gt; registrationID;
+        cout << "Enter Registration ID: ";
+        cin >> registrationID;
 
-for (int i = 0; i &lt; count; i++) {
-if (e[i].registrationID == registrationID) {
-cout &lt;&lt; &quot;Duplicate Registration ID not allowed!\n&quot;;
-registrationID = 0;
-return;
-}
-}
+        for (int i = 0; i < count; i++) {
+            if (e[i].registrationID == registrationID) {
+                cout << "Duplicate Registration ID not allowed!\n";
+                registrationID = 0;
+                return;
+            }
+        }
 
-totalParticipants++;
-}
-void display() {
-if (registrationID != 0) {
-cout &lt;&lt; &quot;\nEvent Name: &quot; &lt;&lt; eventName;
-cout &lt;&lt; &quot;\nParticipant Name: &quot; &lt;&lt; participantName;
-cout &lt;&lt; &quot;\nRegistration ID: &quot; &lt;&lt; registrationID &lt;&lt; endl;
-}
-}
+        totalParticipants++;
+    }
+    void display() {
+        if (registrationID != 0) {
+            cout << "\nEvent Name: " << eventName;
+            cout << "\nParticipant Name: " << participantName;
+            cout << "\nRegistration ID: " << registrationID << endl;
+        }
+    }
 };
 int Event::totalParticipants = 0;
 int main() {
-int n;
-cout &lt;&lt; &quot;Enter number of registrations: &quot;;
-cin &gt;&gt; n;
-Event e[50];
-for (int i = 0; i &lt; n; i++) {
-cout &lt;&lt; &quot;\nEnter registration &quot; &lt;&lt; i + 1 &lt;&lt; &quot; details\n&quot;;
-e[i].input(e, i);
-}
-cout &lt;&lt; &quot;\n--- Event Registration Details ---\n&quot;;
-for (int i = 0; i &lt; n; i++) {
-e[i].display();
-}
-cout &lt;&lt; &quot;\nTotal Participants: &quot; &lt;&lt; Event::totalParticipants;
-return 0;
+    int n;
+    cout << "Enter number of registrations: ";
+    cin >> n;
+    Event e[50];
+    for (int i = 0; i < n; i++) {
+        cout << "\nEnter registration " << i + 1 << " details\n";
+        e[i].input(e, i);
+    }
+    cout << "\n--- Event Registration Details ---\n";
+    for (int i = 0; i < n; i++) {
+        e[i].display();
+    }
+    cout << "\nTotal Participants: " << Event::totalParticipants;
+    return 0;
 }
