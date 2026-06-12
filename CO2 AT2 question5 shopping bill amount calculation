@@ -1,0 +1,71 @@
+#include &lt;iostream&gt;
+using namespace std;
+
+class Product {
+private:
+string productName;
+float price;
+int quantity;
+
+public:
+static int totalProducts;
+
+void getData() {
+cout &lt;&lt; &quot;Enter Product Name: &quot;;
+cin &gt;&gt; productName;
+
+cout &lt;&lt; &quot;Enter Price: &quot;;
+cin &gt;&gt; price;
+
+cout &lt;&lt; &quot;Enter Quantity: &quot;;
+cin &gt;&gt; quantity;
+
+if (price &lt;= 0 || quantity &lt;= 0) {
+cout &lt;&lt; &quot;Invalid price or quantity!\n&quot;;
+price = 0;
+quantity = 0;
+} else {
+totalProducts++;
+}
+}
+
+float calculateTotal() {
+return price * quantity;
+}
+
+void display() {
+cout &lt;&lt; &quot;\nProduct Name: &quot; &lt;&lt; productName;
+cout &lt;&lt; &quot;\nPrice: Rs.&quot; &lt;&lt; price;
+cout &lt;&lt; &quot;\nQuantity: &quot; &lt;&lt; quantity;
+cout &lt;&lt; &quot;\nTotal: Rs.&quot; &lt;&lt; calculateTotal() &lt;&lt; endl;
+}
+};
+
+int Product::totalProducts = 0;
+
+int main() {
+int n;
+float totalBill = 0;
+
+cout &lt;&lt; &quot;Enter number of products: &quot;;
+cin &gt;&gt; n;
+
+Product p[50];
+
+for (int i = 0; i &lt; n; i++) {
+cout &lt;&lt; &quot;\nEnter product &quot; &lt;&lt; i + 1 &lt;&lt; &quot; details\n&quot;;
+p[i].getData();
+}
+
+cout &lt;&lt; &quot;\n--- Shopping Cart Details ---\n&quot;;
+for (int i = 0; i &lt; n; i++) {
+
+p[i].display();
+totalBill += p[i].calculateTotal();
+}
+
+cout &lt;&lt; &quot;\nTotal Products: &quot; &lt;&lt; Product::totalProducts;
+cout &lt;&lt; &quot;\nTotal Bill: Rs.&quot; &lt;&lt; totalBill;
+
+return 0;
+}
