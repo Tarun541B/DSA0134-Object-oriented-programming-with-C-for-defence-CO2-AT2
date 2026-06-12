@@ -1,70 +1,70 @@
-#include &lt;iostream&gt;
+#include <iostream>
 using namespace std;
 
 class Member {
 private:
-int memberID;
-string name, planType;
-int fee;
+    int memberID;
+    string name, planType;
+    int fee;
 
 public:
-static int totalMembers;
+    static int totalMembers;
 
-void input() {
-cout &lt;&lt; &quot;Enter Member ID: &quot;;
-cin &gt;&gt; memberID;
+    void input() {
+        cout << "Enter Member ID: ";
+        cin >> memberID;
 
-cout &lt;&lt; &quot;Enter Name: &quot;;
-cin &gt;&gt; name;
+        cout << "Enter Name: ";
+        cin >> name;
 
-cout &lt;&lt; &quot;Enter Plan Type (Basic/Premium/VIP): &quot;;
-cin &gt;&gt; planType;
+        cout << "Enter Plan Type (Basic/Premium/VIP): ";
+        cin >> planType;
 
-if (planType == &quot;Basic&quot;)
-fee = 1000;
-else if (planType == &quot;Premium&quot;)
-fee = 2000;
-else if (planType == &quot;VIP&quot;)
-fee = 3000;
-else {
+        if (planType == "Basic")
+            fee = 1000;
+        else if (planType == "Premium")
+            fee = 2000;
+        else if (planType == "VIP")
+            fee = 3000;
+        else {
+            cout << "Invalid plan type!\n";
+            fee = 0;
+        }
 
-cout &lt;&lt; &quot;Invalid plan type!\n&quot;;
-fee = 0;
-}
+        if (fee > 0)
+            totalMembers++;
+    }
 
-if (fee &gt; 0)
-totalMembers++;
-}
-
-void display() {
-cout &lt;&lt; &quot;\nMember ID: &quot; &lt;&lt; memberID;
-cout &lt;&lt; &quot;\nName: &quot; &lt;&lt; name;
-cout &lt;&lt; &quot;\nPlan Type: &quot; &lt;&lt; planType;
-cout &lt;&lt; &quot;\nFee: Rs.&quot; &lt;&lt; fee &lt;&lt; endl;
-}
+    void display() {
+        cout << "\nMember ID: " << memberID;
+        cout << "\nName: " << name;
+        cout << "\nPlan Type: " << planType;
+        cout << "\nFee: Rs." << fee << endl;
+    }
 };
 
 int Member::totalMembers = 0;
 
 int main() {
-int n;
-cout &lt;&lt; &quot;Enter number of members: &quot;;
-cin &gt;&gt; n;
+    int n;
+    cout << "Enter number of members: ";
+    cin >> n;
 
-Member m[50];
+    Member m[50];
 
-for (int i = 0; i &lt; n; i++) {
-cout &lt;&lt; &quot;\nEnter details for member &quot; &lt;&lt; i + 1 &lt;&lt; endl;
-m[i].input();
+    for (int i = 0; i < n; i++) {
+        cout << "\nEnter details for member " << i + 1 << endl;
+        m[i].input();
+    }
+
+    cout << "\n--- Membership Details ---\n";
+    for (int i = 0; i < n; i++) {
+        m[i].display();
+    }
+
+    cout << "\nTotal Active Members: " << Member::totalMembers;
+
+    return 0;
 }
 
-cout &lt;&lt; &quot;\n--- Membership Details ---\n&quot;;
-
-for (int i = 0; i &lt; n; i++) {
-m[i].display();
-}
-
-cout &lt;&lt; &quot;\nTotal Active Members: &quot; &lt;&lt; Member::totalMembers;
-
-return 0;
-}
+ 
